@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Censorwatch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Watching the censors, watching you, watching them.">
+    <meta name="author" content="Brendan Molloy">
+    <!--[if lt IE 9]>
+      <script src="/static/js/html5.js"></script>
+    <![endif]-->
+
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/censorwatch.css" rel="stylesheet">
+    <script src="/static/js/angular.min.js"></script>
+    <%doc>
+    <!--
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/img/apple-touch-icon-57-precomposed.png">
+    -->
+    </%doc>
+    <%block name="head"/>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">Censorwatch</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li id="nav-home"><a href="/">Home</a></li>
+              <li id="nav-classifications"><a href="/classifications">Classifications</a></li>
+              <%doc>
+              <!--
+              <li id="nav-datasets"><a href="/datasets">Datasets</a></li>
+              <li id="nav-api"><a href="/api">API</a></li>
+              -->
+              </%doc>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      ${next.body()}
+    </div>
+    
+    <footer>
+      <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/"><img class="cc-img" src="http://i.creativecommons.org/p/zero/1.0/80x15.png" style="border-style: none" alt="CC0"></a>
+      <span class="copyleft">&copy;</span> <a href="mailto:brendan@bbqsrc.net">Brendan Molloy</a> 2012 | <a href="http://github.com/bbqsrc/censorwatch.me">Fork me on GitHub</a> | <a href="/disclaimer">Disclaimer</a>
+    </footer>
+  </body>
+</html>

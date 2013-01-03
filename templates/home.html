@@ -1,0 +1,39 @@
+<%inherit file="border.html"/>
+## XXX: this should be done serverside
+<script>document.getElementById("nav-home").setAttribute('class','active');</script>
+
+<header class="row">
+  <div class="span8">
+    <h1>Censorwatch</h1>
+    <p class="lead">Watching the censors, watching you, watching them.</p>
+  </div>
+  <div class="span4">
+    <blockquote class="pull-right">
+      <p>He who controls the past controls the future. He who controls the present controls the past.</p>
+      <small>George Orwell</small>
+    </blockquote>
+  </div>
+</header>
+
+<%doc>
+## This content hidden until completed!
+<div class="row">
+  <div class="span12">
+    <%include file="recent-classifications.html"/>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span5">
+    <%include file="todays-rc.html"/>
+  </div>
+  <%include file="feeds.html"/>
+</div>
+</%doc>
+
+<div class="row">
+  <div class='span12' style='text-align: center'>
+    <a href="/classifications" class="btn btn-primary">View Classification Database</a>
+    <a href="/search" class="btn">Search Classification Database</a>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<%inherit file="border.html"/>
+
+## XXX: this should be done serverside
+<script>document.getElementById("nav-classifications").setAttribute('class','active');</script>
+<noscript>
+  <strong>Unfortunately, this classification database requires JavaScript to
+    function. Please enable JavaScript in your browser or use another
+    browser.</strong>
+</noscript>
+
+<header class="row">
+  <div class="span3">
+    <h1>Classifications</h1>
+  </div>
+  <div class="span9">
+    <button class="btn">Show/Hide Menu</button>
+  </div>
+</header>
+
+<div class="row">
+  <%include file="classifications-sidebar.html"/>
+  <%include file="classifications-table.html"/>
+</div>
+
+

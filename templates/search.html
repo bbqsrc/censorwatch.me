@@ -1,0 +1,137 @@
+<%inherit file="border.html"/>
+
+<header>
+  <h1>Search Classifications</h1>
+</header>
+
+<form action="/classifications">
+	<div class="row">
+		<div class="span6">
+			<label for="title">Title</label>
+			<input id="title" name="title" class="span6">
+		</div>	
+	</div>
+	<div class="row">
+		<div class="span3">
+			<label for="category">Category</label>
+			<input id="category" name="category">
+		</div>
+		<div class="span3">
+			<label for="medium">Medium</label>
+			<input id="medium" name="medium">
+		</div>	
+	</div>
+	<div class="row">
+		<div class="span3">
+			<label for="author">Author</label>
+			<input id="author" name="author">
+		</div>	
+		<div class="span3">
+			<label for="publisher">Publisher</label>
+			<input id="publisher" name="publisher">
+		</div>	
+	</div>
+	<div class="row">
+		<div class="span3">
+			<label for="production">Production Company</label>
+			<input id="production" name="production-company">
+		</div>	
+		<div class="span3">
+			<label for="country">Country</label>
+			<input id="country" name="country">
+		</div>	
+	</div>
+	<div class="row">
+		<div class="span6">
+			<div style="margin-bottom: 5px">Ratings</div>
+			<div class="well" style="padding: 6px 8px 2px">
+				<div class="row">
+					<label class="span1 checkbox">
+						<input type="checkbox" name="ratings_G"> G
+					</label>
+					<label class="span1 checkbox">
+						<input type="checkbox" name="ratings_PG"> PG
+					</label>
+					<label class="span1 checkbox">
+						<input type="checkbox" name="ratings_M"> M
+					</label>
+					<label class="span1 checkbox">
+						<input type="checkbox" name="ratings_MA"> MA
+					</label>
+				</div>
+				<div class="row">
+					<label class="span1 checkbox">
+						<input type="checkbox" name="ratings_R"> R
+					</label>
+					<label class="span1 checkbox">
+						<input type="checkbox" name="ratings_X"> X
+					</label>
+					<label class="span1 checkbox">
+						<input type="checkbox" name="ratings_CAT1"> CAT1
+					</label>
+					<label class="span1 checkbox">
+						<input type="checkbox" name="ratings_CAT2"> CAT2
+					</label>
+				</div>
+				<div class="row">
+					<label class="span1 checkbox">
+						<input type="checkbox" name="ratings_RC"> RC
+					</label>
+					<label class="span1 checkbox">
+						<input type="checkbox" name="ratings_Misc"> Misc
+					</label>
+					<label class="span1 checkbox">
+						<input type="checkbox" name="ratings_Unrestricted"> Unrestricted
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span3">
+			<label for="from-date">From Date <small>(yyyy-mm-dd)</small></label>
+			<input id="from-date" name="from-date">
+		</div>	
+		<div class="span3">
+			<label for="to-date">To Date <small>(yyyy-mm-dd)</small></label>
+			<input id="to-date" name="to-date">
+		</div>	
+	</div>	
+	<div class="row">
+		<div class="span3">
+			<label for="file-number">File Number</label>
+			<input id="file-number" name="file-number">
+		</div>	
+		<div class="span3">
+			<label for="classification-number">Classification Number</label>
+			<input id="classification-number" name="classification-number">
+		</div>	
+	</div>	
+	<div class="row">
+		<div class="span3">
+			<label for="order-by">Order By</label>
+			<select id="order-by" name="order-by">
+				<option value=""></option>
+				<option value="Title">Title</option>
+				<option value="Category">Category</option>
+				<option value="Date of Classification">Date of Classification</option>
+				<option value="Classification">Classification</option>
+			</select>
+		</div>	
+		<div class="span3">
+			<label for="direction">Direction</label>
+			<select id="direction" name="direction">
+				<option value=""></option>
+				<option value="ascending">ascending</option>
+				<option value="descending">descending</option>
+			</select>
+		</div>	
+	</div>	
+	
+	<div class="form-actions">
+		<button class="btn btn-primary" type="submit">Search</button>
+		<button class="btn" type="reset">Clear</button>
+		<button class="btn" type="button">Back</button>
+	</div>
+</form>
+
