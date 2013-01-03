@@ -8,18 +8,18 @@
     browser.</strong>
 </noscript>
 
-<header class="row">
-  <div class="span3">
-    <h1>Classifications</h1>
+<div data-ng-controller="ClassificationsCtrl">
+  <header class="row">
+    <div class="span4">
+      <h1>Classifications</h1>
+    </div>
+    <div class="span8">
+      <button class="btn" data-ng-click="toggleSidebar()">Show/Hide Menu</button>
+    </div>
+  </header>
+  
+  <div class="row">
+    <%include file="classifications-sidebar.html"/>
+    <%include file="classifications-table.html"/>
   </div>
-  <div class="span9">
-    <button class="btn">Show/Hide Menu</button>
-  </div>
-</header>
-
-<div class="row">
-  <%include file="classifications-sidebar.html"/>
-  <%include file="classifications-table.html"/>
 </div>
-
-

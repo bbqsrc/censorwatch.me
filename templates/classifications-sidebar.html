@@ -1,4 +1,4 @@
-<div class="span3">
+<div class="span3" data-ng-show='sidebarVisible'>
   <div class="well" style="padding: 8px 0"><!-- sidebar -->
     <ul class="nav nav-list">
       <%doc>  
@@ -29,12 +29,25 @@
       <li id="search-criteria" class="nav-header">
         Search Criteria
       </li>
+      <li data-ng-repeat="(k, v) in query">
+        <a data-ng-show="v != '' && k != 'count' && k != 'page'"
+          data-ng-click="removeCriterion(k)" title='{{k}}'>
+          <i class="icon-remove"></i>
+          {{v}}
+        </a>
+      </li>
+      <li data-ng-hide="anyCriteria()">
+        <a>
+          <i class="icon-warning-sign"></i>
+          Everything!
+        </a>
+      </li>
       <%doc>
       <!--
       <li>
         <a href="#">
           <i class="icon-remove"></i>
-          Criterion 1
+          criterion 1
         </a>
       </li>
       <li>
@@ -61,7 +74,11 @@
       </li>
       -->
       <li>
-        <a href="#">
+        <a target="_self" href="/search">
+          <i class="icon-file"></i>
+          New
+        </a>
+        <a target="_self" href="/classifications">
           <i class="icon-refresh"></i>
           Clear
         </a>

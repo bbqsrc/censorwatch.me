@@ -2,23 +2,39 @@
 
 <%block name='head'>
 <style type="text/css">
-	.dl-horizontal dt {
-		width: 150px;
-	}
-	.dl-horizontal dd {
+  .dl-horizontal dt,
+  th
+  {
+    text-align: left;
+    padding-right: 1em;
+  }
+
+  .dl-horizontal dd {
 		margin-left: 160px;
 	}
 </style>
 </%block>
 
+<div data-ng-controller="ClassificationCtrl">
+  
 <header class="row">
 	<div class="span12">
-		<h1></h1>
+    <h1>{{rows.Title}}</h1>
 	</div>
 </header>
 
 <article class="row">
-	<div class="span12">
+  <div class="span12">
+    <table>
+      <tbody>
+        <tr data-ng-repeat="(k, v) in rows">
+          <th>{{k}}</th>
+          <td>{{v}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <%doc>
+    <!--
 		<dl class="dl-horizontal">
 			<dt>Classification</dt>
 			<dd></dd>
@@ -32,7 +48,9 @@
 			<dd></dd>
 			<dt>Original URL</dt>
 			<dd><a href="#">[link]</a></dd>
-		</dl>
+    </dl>
+    -->
+    </%doc>
 	</div>
 </article>
 
@@ -62,4 +80,5 @@
 -->
 </%doc>
 
-<button class="btn">&laquo; Back</button>
+<button class="btn" data-ng-click="goBack()">&laquo; Back</button>
+</div>

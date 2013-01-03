@@ -50,15 +50,15 @@ class ClassificationsHandler(JSONMixin, RequestHandler):
     }
 
     query_map = {
-        "title": lambda x: {"Title": x.upper()},
+        "title": lambda x: {"Title": re.compile(x, re.I)},
         "category": lambda x: {"ApplicationGroupName": re.compile(x, re.I)},
         "medium": lambda x: {"MediaType": re.compile(x, re.I)},
-        "author": lambda x: {"Creator": x.upper()},
-        "producer": lambda x: {"Producer": x.upper()},
-        "production-company": lambda x: {"ProductionCompany": x.upper()},
-        "country": lambda x: {"ProductionCountry": x.upper()},
-        "file-number": lambda x: {"FileNumber": x},
-        "classification-number": lambda x: {"CertificateNo": x},
+        "author": lambda x: {"Creator": re.compile(x, re.I)},
+        "producer": lambda x: {"Producer": re.compile(x, re.I)},
+        "production-company": lambda x: {"ProductionCompany": re.compile(x, re.I)},
+        "country": lambda x: {"ProductionCountry": re.compile(x, re.I)},
+        "file-number": lambda x: {"FileNumber": x.upper()},
+        "classification-number": lambda x: {"CertificateNo": x.upper()}
     }
 
     #order-by and direction are special cases!

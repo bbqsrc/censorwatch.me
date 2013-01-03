@@ -9,7 +9,6 @@
     <!--[if lt IE 9]>
       <script src="/static/js/html5.js"></script>
     <![endif]-->
-
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/censorwatch.css" rel="stylesheet">
     <script src="/static/js/jquery.min.js"></script>
@@ -33,8 +32,8 @@
           <a class="brand" href="/">Censorwatch</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li id="nav-home"><a href="/">Home</a></li>
-              <li id="nav-classifications"><a href="/classifications">Classifications</a></li>
+              <li id="nav-home"><a href="/" target="_self">Home</a></li>
+              <li id="nav-classifications"><a href="/classifications" target="_self">Classifications</a></li>
               <%doc>
               <!--
               <li id="nav-datasets"><a href="/datasets">Datasets</a></li>
@@ -49,11 +48,16 @@
 
     <div class="container">
       ${next.body()}
-    </div>
-    
+      <div style='font-size: 120%; text-align: center; border: 1px dotted red;
+        padding: 1em; margin: 1em;'>
+        <strong>This is a pre-alpha prototype version. There is still much to
+          do. Please keep this in mind! Thanks :)</strong>
+      </div>
     <footer>
       <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/"><img class="cc-img" src="http://i.creativecommons.org/p/zero/1.0/80x15.png" style="border-style: none" alt="CC0"></a>
       <span class="copyleft">&copy;</span> <a href="mailto:brendan@bbqsrc.net">Brendan Molloy</a> 2012 | <a href="http://github.com/bbqsrc/censorwatch.me">Fork me on GitHub</a> | <a href="/disclaimer">Disclaimer</a>
     </footer>
+    </div>
+    
   </body>
 </html>
