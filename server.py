@@ -1,4 +1,5 @@
 import logging
+import re
 
 import pymongo
 import tornado.web
@@ -10,7 +11,7 @@ from mako.lookup import TemplateLookup
 
 from restful import JSONMixin
 
-records = Connection().ncd.records
+collection = Connection().ncd.records
 templates = TemplateLookup(directories=['templates'])
 
 
@@ -31,7 +32,7 @@ class ClassificationsHandler(JSONMixin, RequestHandler):
         "ratings_MA", "ratings_R", "ratings_X", "ratings_CAT1", "ratings_CAT2",
         "ratings_RC", "ratings_Misc", "ratings_Unrestricted", "from-date",
         "to-date", "file-number", "classification-number", "order-by",
-        "direction"
+        "direction", "count", "page"
     ]
 
     ratings = {
@@ -50,8 +51,8 @@ class ClassificationsHandler(JSONMixin, RequestHandler):
 
     query_map = {
         "title": lambda x: {"Title": x.upper()},
-        "category": lambda x: {"ApplicationGroupName": x.upper()},
-        "medium": lambda x: {"MediaType": x},
+        "category": lambda x: {"ApplicationGroupName": re.compile(x, re.I)},
+        "medium": lambda x: {"MediaType": re.compile(x, re.I)},
         "author": lambda x: {"Creator": x.upper()},
         "producer": lambda x: {"Producer": x.upper()},
         "production-company": lambda x: {"ProductionCompany": x.upper()},
@@ -61,6 +62,17 @@ class ClassificationsHandler(JSONMixin, RequestHandler):
     }
 
     #order-by and direction are special cases!
+
+    def _int(self, q, default, min_=None, max_=None):
+        try:
+            x = int(self.get_argument(q, default))
+        except:
+            x = default
+        if min_ is not None:
+            x = max(min_, x)
+        if max_ is not None:
+            x = min(max_, x)
+        return x
 
     def _parse_query(self):
         query = {"$query": {}}
@@ -108,17 +120,45 @@ class ClassificationsHandler(JSONMixin, RequestHandler):
 
         return query
 
+    def _get_cursor(self):
+        query = self._parse_query()
+
+        # set page and count
+        count = self._int("count", 20, 0, 100)
+        skip = self._int("page", 0) * count
+
+        return collection.find(query).limit(count).skip(skip), count, skip
+
+    def _parse_results(self):
+        records, count, skip = self._get_cursor()
+
+        # TODO: work out why this always returns 0 :<
+        total = records.count()
+
+        records = list(records)
+        for r in records:
+            del r['_id']
+
+        return {
+            "results": records,
+            "page": skip // count,
+            "count": count,
+            "total": total
+        }
+
     def get_json(self):
-        self.write(self._parse_query())
+        records = self._parse_results()
+        self.write(records)
 
     def get_html(self):
         logging.debug(self._parse_query())
+        logging.debug(self._parse_results())
         self.write(templates.get_template("classifications.html").render())
 
 
 class ClassificationHandler(JSONMixin, RequestHandler):
     def get_json(self, id):
-        record = records.find_one({"CertificateNo": id})
+        record = collection.find_one({"CertificateNo": id})
         if record is None:
             raise HTTPError(404)
 
