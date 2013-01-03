@@ -80,7 +80,7 @@ class ClassificationsHandler(JSONMixin, RequestHandler):
                     direction = int(direction)
                 except:
                     direction = 1
-                query.update({"$orderby": { arg: direction }})
+                query.update({"$orderby": {arg: direction}})
                 continue
 
             # rating is multi-param
@@ -88,7 +88,7 @@ class ClassificationsHandler(JSONMixin, RequestHandler):
                 arg = self.ratings[q.split("_")[-1]]
                 if query['$query'].get('Rating') is None:
                     query['$query']['Rating'] = {'$in': []}
-                query['$query']['Rating']['$in'].append(arg)
+                query['$query']['Rating']['$in'] += arg
                 continue
 
             # dates too are special.
